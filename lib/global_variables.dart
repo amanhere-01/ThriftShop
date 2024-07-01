@@ -36,23 +36,4 @@ final products = [
   },
 ];
 
-final cart = [
-  {
-    'id': '2',
-    'title': 'Audemars Piguet Royal Oak',
-    'price': 28.95,
-    'imageUrl': 'assets/images/ap.png',
-    'company': 'Audemars Piguet',
-    'strap': 'Emerald',
-
-  },
-  {
-    'id': '0',
-    'title': 'Richard Mille RM 72-01',
-    'price': 44.52,
-    'imageUrl': 'assets/images/rm.jpg',
-    'company': 'Richard Mille',
-    'strap': 'White gold',
-  },
-];
 
