@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:thrift_shop/cart_provider.dart';
 
 import 'global_variables.dart';
 
@@ -7,8 +9,10 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final cart= Provider.of<CartProvider>(context).cart;
+    final cart= context.watch<CartProvider>().cart;     // this is short hand syntax for above
+
     return  Scaffold(
-      // backgroundColor: Colors.purple,
       appBar: AppBar(
         title: const Text('Cart'),
         centerTitle: true,
@@ -26,7 +30,50 @@ class CartPage extends StatelessWidget {
                 backgroundColor: const Color.fromRGBO(169, 238, 230, 1),
               ),
               trailing: IconButton(
-                onPressed: () {  },
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context){
+                      return AlertDialog(
+                        title: Text(
+                          'Delete Item',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        content: const Text('Are you sure you want to delete this?',
+                          style: TextStyle(
+                            fontSize: 16
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                              onPressed:(){
+                                Navigator.of(context).pop();
+                                },
+                              child: const Text('No',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue
+                                ),
+                              )
+                          ),
+                          TextButton(
+                              onPressed:(){
+                                // Provider.of<CartProvider>(context, listen: false).removeProduct(cartItem);
+                                context.read<CartProvider>().removeProduct(cartItem);   // click on read and read docs
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('Yes',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.red
+                                ),
+                              )
+                          )
+                        ],
+                      );
+                    }
+                  );
+                },
                 icon: const Icon(Icons.delete, color: Colors.red,),
               ),
               title: Text(
@@ -35,7 +82,7 @@ class CartPage extends StatelessWidget {
                   fontSize: 20,
                 ),
               ),
-              subtitle: Text('Size: ${cartItem['strap']}' ,
+              subtitle: Text('Strap: ${cartItem['strap']}' ,
                 style: const TextStyle(
                   fontSize: 16,
                 ),),

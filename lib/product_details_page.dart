@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:thrift_shop/cart_provider.dart';
 import 'package:thrift_shop/home_page.dart';
 
 class ProductDetailsPage extends StatefulWidget{
@@ -11,6 +13,34 @@ class ProductDetailsPage extends StatefulWidget{
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   String selectedStrap ='None';
+
+  void onTap(){
+    if(selectedStrap != 'None'){
+      Provider.of<CartProvider>(context,listen: false).addProduct(
+          {
+            'id': widget.product['id'],
+            'title':  widget.product['title'],
+            'price':  widget.product['price'],
+            'imageUrl':  widget.product['imageUrl'],
+            'company':  widget.product['company'],
+            'strap': selectedStrap,
+          }
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text('Added to cart!')
+          )
+      );
+    }
+    else{
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please select strap!')
+        )
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +109,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: ElevatedButton.icon(
-                      onPressed: (){},
+                      onPressed: onTap,
                       style: TextButton.styleFrom(
                           backgroundColor: Theme.of(context).colorScheme.primary,
                           foregroundColor: Colors.black,
