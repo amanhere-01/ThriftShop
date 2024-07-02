@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:thrift_shop/cart_provider.dart';
-import 'package:thrift_shop/home_page.dart';
+import 'package:thrift_shop/providers/cart_provider.dart';
+import 'package:thrift_shop/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());

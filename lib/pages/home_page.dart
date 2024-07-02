@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:thrift_shop/cart_page.dart';
-import 'package:thrift_shop/product_list.dart';
+import 'package:thrift_shop/pages/cart_page.dart';
+import 'package:thrift_shop/widgets/product_list.dart';
 
 
 class HomePage extends StatefulWidget{

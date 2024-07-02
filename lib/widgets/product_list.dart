@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:thrift_shop/product_card.dart';
-import 'package:thrift_shop/product_details_page.dart';
+import 'package:thrift_shop/widgets/product_card.dart';
+import 'package:thrift_shop/pages/product_details_page.dart';
 
-import 'global_variables.dart';
+import '../global_variables.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({super.key});
